@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ton AI SDK 示例</title>
+    <!-- 添加 axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 添加 React 和 ReactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <!-- 通过 CDN 引入 ton-ai-sdk -->
+    <script src="https://cdn.jsdelivr.net/npm/ton-ai-sdk@2.1.8/dist/index.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ton-ai-sdk/dist/index.umd.css" />
+    <!-- <script src="https://static.pea.ai/js/dist/index.umd.js"></script>
+    <link rel="stylesheet" href="https://static.pea.ai/js/dist/index.umd.css" /> -->
+
+    <script>
+      // 模拟 Node.js 的 timers 模块
+      window.timers = {
+        setInterval: setInterval,
+        setTimeout: setTimeout,
+        clearInterval: clearInterval,
+        clearTimeout: clearTimeout,
+      }
+    </script>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      #ton-ad-banner-container {
+        width: 95%;
+        max-width: 500px; /* 可以根据需要调整最大宽度 */
+        aspect-ratio: 5 / 1;
+        border-radius: 10px;
+        border: 2px solid black;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      #show-ad-popup-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ton AI SDK 示例</h1>
+    <!-- 添加一个容器来放置 TonAdBanner 组件 -->
+    <div id="ton-ad-banner-container"></div>
+
+    <!-- 添加显示广告弹窗的按钮 -->
+    <button id="show-ad-popup-btn">Show Ad Popup</button>
+
+    <script src="app.js"></script>
+  </body>
+</html>
