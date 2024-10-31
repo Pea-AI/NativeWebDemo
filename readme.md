@@ -40,19 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // 初始化 SDK
     window.TonAISdk.TonAdInit({ appKey: 'your appkey', debug:true })
     console.log('Ton AI SDK 已初始化')
-
-    // 加载 TonAdBanner 组件
+   // 加载 TonAdBanner 组件
     const TonAdBanner = window.TonAISdk.TonAdBanner
-
-    // 创建一个简单的 React 组件来包装 TonAdBanner
-    const BannerWrapper = () => {
-      return React.createElement(TonAdBanner, {
-        blockId: 'your block id',
-      })
-    }
-
-    // 渲染 BannerWrapper 到指定的容器中
-    ReactDOM.render(React.createElement(BannerWrapper), document.getElementById('ton-ad-banner-container'))
+    // // 渲染 BannerWrapper 到指定的容器中
+    window.TonAISdk.RenderWeidget('ton-ad-banner-container', TonAdBanner, {
+      blockId: 'your block id',
+    })
 
     // 添加按钮点击事件处理
     document.getElementById('show-ad-popup-btn').addEventListener('click', function () {
