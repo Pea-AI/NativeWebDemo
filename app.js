@@ -1,27 +1,37 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // 确保 SDK 已加载
+  // Make sure SDK is loaded
   if (window.TonAISdk) {
-    // 初始化 SDK
+    // Initialize SDK
     window.TonAISdk.TonAdInit({ appId: '670a71909f518049a50c1264', debug: true })
-    console.log('Ton AI SDK 已初始化')
-    // 加载 TonAdBanner 组件
-    const TonAdBanner = window.TonAISdk.TonAdBanner
-    // // 渲染 BannerWrapper 到指定的容器中
-    window.TonAISdk.RenderWeidget('ton-ad-banner-container', TonAdBanner, {
-      blockId: '66ed98a77880d24349a42ccf',
-    })
+    console.log('Ton AI SDK initialized')
 
-    // 添加按钮点击事件处理
+    // TonAdBanner component: no longer supported
+    // const TonAdBanner = window.TonAISdk.TonAdBanner
+    // Render BannerWrapper to specified container
+    // window.TonAISdk.RenderWeidget('ton-ad-banner-container', TonAdBanner, {
+    //   blockId: '66ed98a77880d24349a42ccf',
+    // })
+
+    // Add button click event handler to show popup ad
     document.getElementById('show-ad-popup-btn').addEventListener('click', function () {
-      // 这里假设 TonAdPopupShow 内部会使用 setInterval 和 setTimeout
       window.TonAISdk.TonAdPopupShow({
         blockId: '66ed98a77880d24349a42ccf',
+        onAdClick: () => {
+          console.log('onAdClick')
+          // After clicking the ad, you can perform some operations, such as recording click events, sending rewards
+        },
         onAdError: (e) => {
           console.log('onAdError', e)
+        },
+        onAdClose: () => {
+          console.log('onAdClose')
+        },
+        onAdShow: () => {
+          console.log('onAdShow')
         },
       })
     })
   } else {
-    console.error('Ton AI SDK 未加载')
+    console.error('Ton AI SDK not loaded')
   }
 })

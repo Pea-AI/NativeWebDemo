@@ -1,55 +1,46 @@
-**
+# Ton AI SDK Example Documentation
 
-# Ton AI SDK 示例文档
+## Introduction
 
-## 简介
+This example demonstrates how to use the Ton AI SDK via CDN in a native JavaScript and HTML project. The SDK allows you to easily integrate advertising functionality.
 
-本示例展示了如何在原生 JavaScript 和 HTML 项目中通过 CDN 使用 Ton AI SDK。该 SDK 允许您轻松集成广告功能。
+## Environment Setup
 
-## 环境准备
+Before starting, ensure your project includes the following dependencies:
 
-在开始之前，请确保您的项目中包含以下依赖项：
+* axios: For handling HTTP requests
+* React and ReactDOM: For building user interfaces
+* ton-ai-sdk: For integrating advertising functionality
 
-* axios：用于处理 HTTP 请求。
-* React 和 ReactDOM：用于构建用户界面。
-* ton-ai-sdk：用于集成广告功能。
+## Loading Required Packages
 
-## 加载对应的包
-
-在项目中，您需要引入所需的库和 SDK。以下是 index.html 的示例代码：
+In your project, you need to import the necessary libraries and SDK. Here's an example of index.html:
 
 ```html
-    <!-- 添加 axios CDN -->
+    <!-- Add axios CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- 添加 React 和 ReactDOM -->
+    <!-- Add React and ReactDOM -->
     <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-    <!-- 通过 CDN 引入 ton-ai-sdk -->
-    <script src="https://cdn.jsdelivr.net/npm/ton-ai-sdk@2.1.15/dist/index.umd.js"></script>
+    <!-- Import ton-ai-sdk via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/ton-ai-sdk/dist/index.umd.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ton-ai-sdk/dist/index.umd.css" />
 ```
 
-## 初始化 sdk
+## Initializing the SDK
 
-您需要初始化 SDK，并创建一个 React 组件来渲染广告横幅。以下是 app.js 的示例代码：
+You need to initialize the SDK and create a React component to render the ad banner. Here's an example of app.js:
 
 ```js
 document.addEventListener('DOMContentLoaded', function () {
-  // 确保 SDK 已加载
+  // Make sure SDK is loaded
   if (window.TonAISdk) {
-    // 初始化 SDK
+    // Initialize SDK
     window.TonAISdk.TonAdInit({ appKey: 'your appkey', debug:true })
-    console.log('Ton AI SDK 已初始化')
-   // 加载 TonAdBanner 组件
-    const TonAdBanner = window.TonAISdk.TonAdBanner
-    // // 渲染 BannerWrapper 到指定的容器中
-    window.TonAISdk.RenderWeidget('ton-ad-banner-container', TonAdBanner, {
-      blockId: 'your block id',
-    })
+    console.log('Ton AI SDK initialized')
 
-    // 添加按钮点击事件处理
+    // Add button click event handler to show popup ad
     document.getElementById('show-ad-popup-btn').addEventListener('click', function () {
-      // 这里假设 TonAdPopupShow 内部会使用 setInterval 和 setTimeout
       window.TonAISdk.TonAdPopupShow({
         blockId: 'your block id',
         onAdError: (e) => {
@@ -58,25 +49,25 @@ document.addEventListener('DOMContentLoaded', function () {
       })
     })
   } else {
-    console.error('Ton AI SDK 未加载')
+    console.error('Ton AI SDK not loaded')
   }
 })
 ```
 
-## 运行示例
+## Running the Example
 
-* 将上述代码复制到您的项目中，确保文件结构正确。
+1. Copy the above code into your project, ensuring the file structure is correct.
 
-2. 打开 index.html 文件，您将看到一个广告横幅和一个按钮。
+2. Open the index.html file, and you will see an ad banner and a button.
 
-* 点击按钮以显示广告弹窗。
+3. Click the button to display the ad popup.
 
-## 结论
+## Conclusion
 
-通过以上步骤，您可以轻松地在您的项目中集成 Ton AI SDK。请根据需要调整 appKey 和 blockId 以适应您的应用场景。
+By following these steps, you can easily integrate the Ton AI SDK into your project. Please adjust the appKey and blockId according to your application needs.
 
-如有任何问题，请参考 Ton AI SDK 的官方文档或联系支持团队。
+If you have any questions, please refer to the official Ton AI SDK documentation or contact the support team.
 
 ---
 
-希望这份文档能帮助您更好地理解如何使用 Ton AI SDK！
+Hope this documentation helps you better understand how to use the Ton AI SDK!
