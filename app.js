@@ -4,13 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize SDK
     window.TonAISdk.TonAdInit({ appId: '670a71909f518049a50c1264', debug: true })
     console.log('Ton AI SDK initialized')
-
-    // TonAdBanner component: no longer supported
-    // const TonAdBanner = window.TonAISdk.TonAdBanner
-    // Render BannerWrapper to specified container
-    // window.TonAISdk.RenderWeidget('ton-ad-banner-container', TonAdBanner, {
-    //   blockId: '66ed98a77880d24349a42ccf',
-    // })
+    window.TonAISdk.SetUserOpenId('1234567890')
 
     // Add button click event handler to show popup ad
     document.getElementById('show-ad-popup-btn').addEventListener('click', function () {
@@ -18,7 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
         blockId: '66ed98a77880d24349a42ccf',
         onAdClick: () => {
           console.log('onAdClick')
-          // After clicking the ad, you can perform some operations, such as recording click events, sending rewards
+        },
+        onAdVerifyed: (success, ad, message) => {
+          console.log('onAdVerifyed', success, ad, message)
+          if (success) {
+            // After clicking the ad, you can perform some operations, such as recording click events, sending rewards
+            console.log('ad verified')
+            // sendReward()
+          } else {
+            console.log('ad not verified')
+          }
         },
         onAdError: (e) => {
           console.log('onAdError', e)
